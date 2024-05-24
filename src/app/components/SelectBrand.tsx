@@ -27,7 +27,7 @@ class SelectBrand extends Component<Props>{
 
     componentDidMount(): void {
         const { loadBrandsRequest } = this.props;
-        loadBrandsRequest()
+        loadBrandsRequest();
     }
     
     render(): ReactNode {  

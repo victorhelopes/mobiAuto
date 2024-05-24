@@ -1,11 +1,15 @@
 import { Reducer } from "@reduxjs/toolkit";
-import { CarState, CarsTypes, loadBrandsSuccess, loadModelsSuccess, requestBrand, requestModel } from "./types";
+import { CarState, CarsTypes, loadBrandsSuccess, loadModelsSuccess, loadYearsSuccess, requestBrand, requestModel, requestYear } from "./types";
 
 const INITIAL_STATE: CarState = {
     brands: [],
     models: [],
+    years: [],
+    
     brand: '',
     model: '',
+    year: '',
+    
     error: false,
     loading: false,
 }
@@ -27,7 +31,14 @@ const reducer: Reducer<CarState> = (state = INITIAL_STATE, action) =>{
         //Model
         case CarsTypes.LOAD_MODELS_REQUEST:
             const { brandSelected } = action.payload as requestBrand;
-            return { ...state, loading: true, model: '', models: [], brand: brandSelected}
+            return { 
+                ...state, 
+                loading: true, 
+                brand: brandSelected,
+                model: '', 
+                year: '',
+                models: [] 
+            }
         
         case CarsTypes.LOAD_MODELS_SUCCESS:
             const resultLoadModelsRequest = action.payload as loadModelsSuccess
@@ -36,11 +47,28 @@ const reducer: Reducer<CarState> = (state = INITIAL_STATE, action) =>{
 
         case CarsTypes.LOAD_MODELS_FAILURE:
             return { ...state, loading: false, error: true, models: [], model: ''}
-
-        case CarsTypes.LOAD_MODELS_UPDATE:
+            
+        //Year
+        case CarsTypes.LOAD_YEARS_REQUEST:
             const { modelSelected } = action.payload as requestModel;
-            console.log(action.payload)
-            return { ...state, loading: false, error: true, model: modelSelected}
+            return { 
+                ...state, 
+                loading: true, 
+                model: modelSelected,
+                year: ''
+            }
+        
+            case CarsTypes.LOAD_YEARS_UPDATE:
+            const { yearSelected } = action.payload as requestYear;
+            return { ...state, loading: true, year: yearSelected}
+        
+        case CarsTypes.LOAD_YEARS_SUCCESS:
+            const resultLoadYearsRequest = action.payload as loadYearsSuccess
+            const { years } = resultLoadYearsRequest;
+            return { ...state, loading: false, error: false, years: years || []}
+
+        case CarsTypes.LOAD_YEARS_FAILURE:
+            return { ...state, loading: false, error: true}
 
         default:
             return state;

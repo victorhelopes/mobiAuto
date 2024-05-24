@@ -6,7 +6,9 @@ import {
     loadBrandsFailure, 
     loadBrandsSuccess, 
     loadModelsFailure, 
-    loadModelsSuccess 
+    loadModelsSuccess ,
+    loadYearsSuccess,
+    loadYearsFailure
 } from './actions';
 
 import { Options } from './types';
@@ -26,5 +28,17 @@ export function* loadModelsRequest(data: any){
         yield put(loadModelsSuccess(response.data.modelos))
     }catch(err) {
         yield put(loadModelsFailure())
+    }
+}
+
+export function* loadYearsRequest(data: any){
+    try {
+        const response: {data: Options[]} = yield call(
+            api.get, 
+            `/carros/marcas/${data.payload.brandSelected}/modelos/${data.payload.modelSelected}/anos`
+        )
+        yield put(loadYearsSuccess(response.data))
+    }catch(err) {
+        yield put(loadYearsFailure())
     }
 }

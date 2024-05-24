@@ -9,6 +9,7 @@ import * as BrandsActions from '../../store/ducks/cars/actions'
 import { Options } from "@/store/ducks/cars/types";
 import store, { ApplicationState } from "@/store";
 import { SelectField } from "@/components/molecules/SelectField";
+import { loadYearsRequest } from "@/store/ducks/cars/sagas";
 
 
 interface StateProps {
@@ -18,23 +19,17 @@ interface StateProps {
 }
 
 interface DispatchProps {
-    loadBrandsRequest(): void;
-    updateModelSelected(value: string): void;
+    loadYearsRequest(modelSelected: string, brandSelected: string): void;
 }
 
 type Props = StateProps & DispatchProps;
 
-class SelectModel extends Component<Props>{
-    componentDidMount(): void {
-        const { loadBrandsRequest } = this.props;
-        loadBrandsRequest()
-    }
-    
+class SelectModel extends Component<Props>{    
     render(): ReactNode {  
-        const {models, model, brand} = this.props;
+        const {models, model, brand, loadYearsRequest} = this.props;
 
         function handleModel(value: string){
-            store.dispatch({type: '@cars/LOAD_MODELS_UPDATE', payload: {modelSelected: value}})
+            loadYearsRequest(brand, value)
         } 
 
         return (<SelectField

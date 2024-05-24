@@ -4,6 +4,9 @@ import { Title } from "@/components/atoms/Title";
 import { Container } from "@mui/material";
 import SelectBrand from "./components/SelectBrand";
 import SelectModel from "./components/SelectModel";
+import SelectYear from "./components/SelectYear";
+import store from "@/store";
+import { useEffect } from "react";
 
 export default function Home() {
   return (
@@ -18,6 +21,7 @@ export default function Home() {
         >
             <SelectBrand/>
             <SelectModel/>
+            <SelectYear/>
         </Card>
       </Container>
     </main>
