@@ -1,5 +1,5 @@
 import { action } from "typesafe-actions";
-import { Options, CarsTypes } from "./types";
+import { Options, CarsTypes, loadCarInfosSuccessResponse } from "./types";
 
 //Get brands
 export const loadBrandsRequest = () => action(CarsTypes.LOAD_BRANDS_REQUEST);
@@ -10,7 +10,7 @@ export const loadBrandsSuccess = (data: Options[]) =>
 export const loadBrandsFailure = () => action(CarsTypes.LOAD_BRANDS_FAILURE);
 
 //Get Models
-export const loadModelsRequest = (brandSelected: string) => 
+export const loadModelsRequest = (brandSelected: Options) => 
     action(CarsTypes.LOAD_MODELS_REQUEST, {brandSelected});
 
 export const loadModelsSuccess = (data: Options[]) => 
@@ -19,13 +19,22 @@ export const loadModelsSuccess = (data: Options[]) =>
 export const loadModelsFailure = () => action(CarsTypes.LOAD_MODELS_FAILURE);
 
 //Get Years
-export const loadYearsRequest = (brandSelected: string, modelSelected: string) => 
+export const loadYearsRequest = (brandSelected: Options, modelSelected: Options) => 
     action(CarsTypes.LOAD_YEARS_REQUEST, {brandSelected, modelSelected});
 
-export const loadYearsUpdate = (yearSelected: string) => 
+export const loadYearsUpdate = (yearSelected: Options) => 
     action(CarsTypes.LOAD_YEARS_UPDATE, {yearSelected});
 
 export const loadYearsSuccess = (data: Options[]) => 
     action(CarsTypes.LOAD_YEARS_SUCCESS, {years: data});
 
 export const loadYearsFailure = () => action(CarsTypes.LOAD_YEARS_FAILURE);
+
+//Get car infos
+export const loadCarInfosRequest = (brandSelected: Options, modelSelected: Options, yearSelected: Options) => 
+    action(CarsTypes.LOAD_CAR_INFOS_REQUEST, {brandSelected, modelSelected, yearSelected});
+
+export const loadCarInfosSuccess = (data: loadCarInfosSuccessResponse) => 
+    action(CarsTypes.LOAD_CAR_INFOS_SUCCESS, {carInfos: data});
+
+export const loadCarInfosFailure = () => action(CarsTypes.LOAD_CAR_INFOS_FAILURE);

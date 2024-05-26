@@ -13,32 +13,28 @@ import { SelectField } from "@/components/molecules/SelectField";
 
 interface StateProps {
     years: Options[];
-    model: string;
-    brand: string;
-    year: string;
+    model: Options;
+    brand: Options;
+    year: Options;
 }
 
-interface DispatchProps {
-
-}
-
-type Props = StateProps & DispatchProps
+type Props = StateProps
 
 class SelectYear extends Component<Props>{    
     render(): ReactNode {  
         const {years, year, model} = this.props;
         
-        function handleYear(value: string){
+        function handleYear(value: Options){
             store.dispatch({type: '@cars/LOAD_YEARS_UPDATE', payload: {yearSelected: value}})
         } 
         const yearOptions = years.map((year)=>{
             return {
-                value: year.codigo,
+                value: year.codigo + ',' + year.nome,
                 text: year.nome
             }
         })
         
-        if(model){
+        if(model.codigo){
             return (
                 <SelectField
                     label={{

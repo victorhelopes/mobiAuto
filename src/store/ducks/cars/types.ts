@@ -15,6 +15,11 @@
     LOAD_YEARS_SUCCESS = '@cars/LOAD_YEARS_SUCCESS',
     LOAD_YEARS_FAILURE = '@cars/LOAD_YEARS_FAILURE',
     LOAD_YEARS_UPDATE = '@cars/LOAD_YEARS_UPDATE',
+
+    //Brands
+    LOAD_CAR_INFOS_REQUEST = '@cars/LOAD_CAR_INFOS_REQUEST',
+    LOAD_CAR_INFOS_SUCCESS = '@cars/LOAD_CAR_INFOS_SUCCESS',
+    LOAD_CAR_INFOS_FAILURE = '@cars/LOAD_CAR_INFOS_FAILURE',
 }
   
 //Data Types
@@ -27,20 +32,21 @@ export interface loadBrandsSuccess {
     brands: Options[];
 }
 
-export interface requestBrand {
-    brandSelected: string;
+export interface loadRequestSuccess {
+    options: Options[];
+}
+
+export interface requestWithOptionSelected {
+    optionSelected: Options;
 }
 
 export interface loadModelsSuccess {
     models: Options[];
 }
 
-export interface requestModel {
-    modelSelected: string;
-}
 
-export interface requestYear {
-    yearSelected: string;
+export interface loadCarInfosSuccessResponse{
+    Valor: string;
 }
 
 export interface loadYearsSuccess {
@@ -53,9 +59,11 @@ export interface CarState {
   readonly models: Options[];
   readonly years: Options[];
 
-  readonly brand: string;
-  readonly model: string;
-  readonly year: string;
+  readonly brand: Options;
+  readonly model: Options;
+  readonly year: Options;
+  
+  readonly value: string;
 
   readonly error: boolean;
   readonly loading: boolean;

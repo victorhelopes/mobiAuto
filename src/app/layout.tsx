@@ -21,7 +21,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <StoreProvider>
-        <body className={roboto.className} style={{backgroundColor: '#F9F6FC'}}>{children}</body>
+        <body
+          className={roboto.className} 
+        >
+          {children}
+        </body>
       </StoreProvider>
     </html>
   );

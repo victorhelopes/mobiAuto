@@ -10,15 +10,14 @@ import { Options } from "@/store/ducks/cars/types";
 import { ApplicationState } from "@/store";
 import { SelectField } from "@/components/molecules/SelectField";
 
-
 interface StateProps {
     brands: Options[];
-    brand: string;
+    brand: Options;
 }
 
 interface DispatchProps {
     loadBrandsRequest(): void;
-    loadModelsRequest(brandSelected: string): void;
+    loadModelsRequest(brandSelected: Options): void;
 }
 
 type Props = StateProps & DispatchProps
@@ -33,12 +32,13 @@ class SelectBrand extends Component<Props>{
     render(): ReactNode {  
         const {brands, brand, loadModelsRequest} = this.props;
         
-        function handleBrand(value: string){
+        function handleBrand(value: Options){
             loadModelsRequest(value)
         } 
+        
         const brandOptions = brands.map((brand)=>{
             return {
-                value: brand.codigo,
+                value: brand.codigo + ',' + brand.nome,
                 text: brand.nome
             }
         })

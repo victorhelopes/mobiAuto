@@ -8,10 +8,11 @@ import {
     loadModelsFailure, 
     loadModelsSuccess ,
     loadYearsSuccess,
-    loadYearsFailure
+    loadYearsFailure,
+    loadCarInfosSuccess
 } from './actions';
 
-import { Options } from './types';
+import { Options, loadCarInfosSuccessResponse } from './types';
 
 export function* loadBrandsRequest(){
     try {
@@ -24,7 +25,7 @@ export function* loadBrandsRequest(){
 
 export function* loadModelsRequest(data: any){
     try {
-        const response: {data: {modelos: Options[]}} = yield call(api.get, `/carros/marcas/${data.payload.brandSelected}/modelos`)
+        const response: {data: {modelos: Options[]}} = yield call(api.get, `/carros/marcas/${data.payload.brandSelected.codigo}/modelos`)
         yield put(loadModelsSuccess(response.data.modelos))
     }catch(err) {
         yield put(loadModelsFailure())
@@ -35,9 +36,21 @@ export function* loadYearsRequest(data: any){
     try {
         const response: {data: Options[]} = yield call(
             api.get, 
-            `/carros/marcas/${data.payload.brandSelected}/modelos/${data.payload.modelSelected}/anos`
+            `/carros/marcas/${data.payload.brandSelected.codigo}/modelos/${data.payload.modelSelected.codigo}/anos`
         )
         yield put(loadYearsSuccess(response.data))
+    }catch(err) {
+        yield put(loadYearsFailure())
+    }
+}
+
+export function* loadCarInfosRequest(data: any){
+    try {
+        const response: {data: loadCarInfosSuccessResponse} = yield call(
+            api.get, 
+            `/carros/marcas/${data.payload.brandSelected.codigo}/modelos/${data.payload.modelSelected.codigo}/anos/${data.payload.yearSelected.codigo}`
+        )
+        yield put(loadCarInfosSuccess(response.data))
     }catch(err) {
         yield put(loadYearsFailure())
     }
