@@ -25,7 +25,7 @@ interface DispatchProps {
 }
 
 type Props = StateProps & DispatchProps;
-class Home extends Component<Props>{
+class CarInfos extends Component<Props>{
   componentDidMount(): void {
     const { loadCarInfosRequest, year, model, brand } = this.props;
     loadCarInfosRequest(brand,model, year);
@@ -67,4 +67,4 @@ const mapStateToProps = (state: ApplicationState) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(BrandsActions, dispatch) 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(CarInfos);
