@@ -13,6 +13,7 @@ import { SelectField } from "@/components/molecules/SelectField";
 interface StateProps {
     brands: Options[];
     brand: Options;
+    loading: boolean;
 }
 
 interface DispatchProps {
@@ -30,7 +31,7 @@ class SelectBrand extends Component<Props>{
     }
     
     render(): ReactNode {  
-        const {brands, brand, loadModelsRequest} = this.props;
+        const {brands, brand, loading, loadModelsRequest} = this.props;
         
         function handleBrand(value: Options){
             loadModelsRequest(value)
@@ -52,6 +53,7 @@ class SelectBrand extends Component<Props>{
                 value={brand}
                 onClick={handleBrand}
                 options={brandOptions}
+                disabled={loading}
             />
         )
     }
@@ -60,6 +62,8 @@ class SelectBrand extends Component<Props>{
 const mapStateToProps = (state: ApplicationState) => ({
     brands: state.cars.brands,
     brand: state.cars.brand,
+
+    loading: state.cars.loading,
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(BrandsActions, dispatch) 

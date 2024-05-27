@@ -16,9 +16,10 @@ import { Title } from "@/components/atoms/Title";
 import SelectBrand from "./components/SelectBrand";
 import SelectModel from "./components/SelectModel";
 import SelectYear from "./components/SelectYear";
+import { Options } from "@/store/ducks/cars/types";
 
 interface StateProps {
-  year: string;
+  year: Options;
 }
 type Props = StateProps;
 
@@ -37,7 +38,7 @@ class Home extends Component<Props>{
         <Subtitle text="Consulte o valor de um veículo de forma gratuita"/>
           <Card 
             buttonText='Consultar preço'
-            buttonIsDisabled={year.length === 0}
+            buttonIsDisabled={year.codigo.length === 0}
           >
             <div style={{
               display: 'flex',

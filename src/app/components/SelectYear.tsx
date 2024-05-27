@@ -16,13 +16,14 @@ interface StateProps {
     model: Options;
     brand: Options;
     year: Options;
+    loading: boolean;
 }
 
 type Props = StateProps
 
 class SelectYear extends Component<Props>{    
     render(): ReactNode {  
-        const {years, year, model} = this.props;
+        const {years, year, loading, model} = this.props;
         
         function handleYear(value: Options){
             store.dispatch({type: '@cars/LOAD_YEARS_UPDATE', payload: {yearSelected: value}})
@@ -44,6 +45,7 @@ class SelectYear extends Component<Props>{
                     value={year}
                     onClick={handleYear}
                     options={yearOptions}
+                    disabled={loading}
                 />
             )
         }
@@ -55,7 +57,9 @@ const mapStateToProps = (state: ApplicationState) => ({
 
     model: state.cars.model,
     brand: state.cars.brand,
-    year: state.cars.year
+    year: state.cars.year,
+    
+    loading: state.cars.loading,
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(BrandsActions, dispatch) 

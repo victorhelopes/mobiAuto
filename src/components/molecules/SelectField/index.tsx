@@ -7,6 +7,7 @@ interface ISelectField{
     options: ISelectOption[];
     label: ILabel;
     value: Options;
+    disabled: boolean;
     onClick: (value: Options) => void;
 }
 
@@ -24,6 +25,12 @@ export function SelectField({ ...props }: ISelectField){
             });
       };
 
+      const valueSelected = 
+        props.value.codigo === '' ? 
+            '' 
+        : 
+            props.value.codigo + ',' + props.value.nome
+
     return(
         <FormControl  
             style={{
@@ -38,8 +45,9 @@ export function SelectField({ ...props }: ISelectField){
             <Select
                 id={props.label.id} 
                 label={props.label.name}
-                value={props.value.codigo + ',' + props.value.nome}
+                value={valueSelected}
                 onChange={handleChange}
+                disabled={props.disabled}
             >
                 {props.options.map((option: ISelectOption, index)=>{
                     return (

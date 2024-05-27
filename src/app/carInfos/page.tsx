@@ -39,7 +39,9 @@ class Home extends Component<Props>{
           backgroundColor: '#DCF5F2'
         }}
       >
-        <Title text={`Tabela Fipe: Preço ${this.props.brand.nome} ${this.props.model.nome} ${this.props.year.nome}`}/>
+        <Title 
+          text={`Tabela Fipe: Preço ${this.props.brand.nome} ${this.props.model.nome} ${this.props.year.nome}`}
+        />
         <Chip
             text={this.props.value}
         />

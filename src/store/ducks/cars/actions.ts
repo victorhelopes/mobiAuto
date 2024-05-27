@@ -5,7 +5,7 @@ import { Options, CarsTypes, loadCarInfosSuccessResponse } from "./types";
 export const loadBrandsRequest = () => action(CarsTypes.LOAD_BRANDS_REQUEST);
 
 export const loadBrandsSuccess = (data: Options[]) => 
-    action(CarsTypes.LOAD_BRANDS_SUCCESS, {brands: data});
+    action(CarsTypes.LOAD_BRANDS_SUCCESS, {options: data});
 
 export const loadBrandsFailure = () => action(CarsTypes.LOAD_BRANDS_FAILURE);
 
@@ -14,7 +14,7 @@ export const loadModelsRequest = (brandSelected: Options) =>
     action(CarsTypes.LOAD_MODELS_REQUEST, {brandSelected});
 
 export const loadModelsSuccess = (data: Options[]) => 
-    action(CarsTypes.LOAD_MODELS_SUCCESS, {models: data});
+    action(CarsTypes.LOAD_MODELS_SUCCESS, {options: data});
 
 export const loadModelsFailure = () => action(CarsTypes.LOAD_MODELS_FAILURE);
 
@@ -26,7 +26,7 @@ export const loadYearsUpdate = (yearSelected: Options) =>
     action(CarsTypes.LOAD_YEARS_UPDATE, {yearSelected});
 
 export const loadYearsSuccess = (data: Options[]) => 
-    action(CarsTypes.LOAD_YEARS_SUCCESS, {years: data});
+    action(CarsTypes.LOAD_YEARS_SUCCESS, {options: data});
 
 export const loadYearsFailure = () => action(CarsTypes.LOAD_YEARS_FAILURE);
 

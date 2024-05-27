@@ -18,7 +18,7 @@ export function Card({ ...props }: ICard){
                 margin: 'auto',
                 padding: '1.875rem 2.875rem',
                 borderRadius: '0.25rem',
-                boxShadow: '0 0.125 0.125 0.125 #00000025 '
+                boxShadow: '0 0.125 0.125 0.125 #00000025'
             }}
         >
                 {props.children}

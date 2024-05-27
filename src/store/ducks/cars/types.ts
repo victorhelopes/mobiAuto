@@ -16,7 +16,7 @@
     LOAD_YEARS_FAILURE = '@cars/LOAD_YEARS_FAILURE',
     LOAD_YEARS_UPDATE = '@cars/LOAD_YEARS_UPDATE',
 
-    //Brands
+    //Car infos
     LOAD_CAR_INFOS_REQUEST = '@cars/LOAD_CAR_INFOS_REQUEST',
     LOAD_CAR_INFOS_SUCCESS = '@cars/LOAD_CAR_INFOS_SUCCESS',
     LOAD_CAR_INFOS_FAILURE = '@cars/LOAD_CAR_INFOS_FAILURE',
@@ -28,10 +28,6 @@ export interface Options{
     nome: string
 }
 
-export interface loadBrandsSuccess {
-    brands: Options[];
-}
-
 export interface loadRequestSuccess {
     options: Options[];
 }
@@ -40,17 +36,8 @@ export interface requestWithOptionSelected {
     optionSelected: Options;
 }
 
-export interface loadModelsSuccess {
-    models: Options[];
-}
-
-
 export interface loadCarInfosSuccessResponse{
     Valor: string;
-}
-
-export interface loadYearsSuccess {
-    years: Options[];
 }
 
 //State type

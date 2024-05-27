@@ -15,6 +15,7 @@ interface StateProps {
     models: Options[];
     model: Options;
     brand: Options;
+    loading: boolean;
 }
 
 interface DispatchProps {
@@ -25,7 +26,7 @@ type Props = StateProps & DispatchProps;
 
 class SelectModel extends Component<Props>{    
     render(): ReactNode {  
-        const {models, model, brand, loadYearsRequest} = this.props;
+        const {models, model, brand, loading, loadYearsRequest} = this.props;
 
         function handleModel(value: Options){
             loadYearsRequest(brand, value)
@@ -47,6 +48,7 @@ class SelectModel extends Component<Props>{
               value={model}
               onClick={handleModel}
               options={modelOptions}
+              disabled={loading || modelOptions.length === 0}
             />
         )
     }
@@ -55,7 +57,9 @@ class SelectModel extends Component<Props>{
 const mapStateToProps = (state: ApplicationState) => ({
     models: state.cars.models,
     model: state.cars.model,
-    brand: state.cars.brand
+    brand: state.cars.brand,
+    
+    loading: state.cars.loading,
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(BrandsActions, dispatch) 

@@ -25,7 +25,11 @@ export function* loadBrandsRequest(){
 
 export function* loadModelsRequest(data: any){
     try {
-        const response: {data: {modelos: Options[]}} = yield call(api.get, `/carros/marcas/${data.payload.brandSelected.codigo}/modelos`)
+        const response: {data: {modelos: Options[]}} = 
+            yield call(
+                api.get, 
+                `/carros/marcas/${data.payload.brandSelected.codigo}/modelos`
+            )
         yield put(loadModelsSuccess(response.data.modelos))
     }catch(err) {
         yield put(loadModelsFailure())
