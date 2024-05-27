@@ -17,7 +17,8 @@ interface StateProps {
   year: Options;
   model: Options;
   brand: Options;
-  value: string
+  value: string;
+  loading: boolean;
 }
 
 interface DispatchProps {
@@ -44,6 +45,7 @@ class CarInfos extends Component<Props>{
         />
         <Chip
             text={this.props.value}
+            loading={this.props.loading}
         />
         <p style={{
           color: '#A19386',
@@ -63,6 +65,8 @@ const mapStateToProps = (state: ApplicationState) => ({
   brand: state.cars.brand,
   model: state.cars.model,
   value: state.cars.value,
+
+  loading: state.cars.loading,
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(BrandsActions, dispatch) 

@@ -1,5 +1,6 @@
 interface IChip {
     text: string;
+    loading: boolean;
 }
 
 export function Chip({ ...props }: IChip){
@@ -13,7 +14,7 @@ export function Chip({ ...props }: IChip){
             margin: '1rem auto',
             fontWeight: 'bold'
         }}>
-            {props.text}
+            {props.loading ? 'Carregando' : props.text}
         </h1>
     )
 }
